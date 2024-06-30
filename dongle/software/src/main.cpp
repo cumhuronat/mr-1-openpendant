@@ -5,6 +5,10 @@
 #include <BLEServer.h>
 #include <Arduino.h>
 
+#include <WiFi.h>
+#include <ESPmDNS.h>
+#include <ArduinoOTA.h>
+
 #define SERVICE_UUID "12345678-1234-1234-1234-123456789abc"
 #define CHARACTERISTIC_UUID "87654321-4321-4321-4321-cba987654321"
 
@@ -53,6 +57,13 @@ void forward_hostserial_task(void *param) {
       xSemaphoreGive(xSemaphore);
     }
     vTaskDelay(1 / portTICK_PERIOD_MS);
+  }
+}
+
+void ota_handle_task( void * parameter ) {
+  for (;;) {
+    ArduinoOTA.handle();
+    delay(3500);
   }
 }
 
@@ -114,6 +125,18 @@ void setBle() {
   pAdvertising->start();
 }
 
+void setOTA() {
+  ArduinoOTA.setHostname("openpendant");
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+    Serial.println("Connection Failed! Rebooting...");
+    delay(5000);
+    ESP.restart();
+  }
+  ArduinoOTA.begin();
+}
+
 void setup() {
   pinMode(42, OUTPUT);
   digitalWrite(42, HIGH);
@@ -123,16 +146,19 @@ void setup() {
   Serial.begin(115200);
   Serial.onEvent(usbEventCallback);
   setBle();
+  setOTA();
 
   xSemaphore = xSemaphoreCreateBinary();
-  xSemaphoreGive(xSemaphore); // Release the semaphore initially
+  xSemaphoreGive(xSemaphore);
 
   xTaskCreate(usbhost_rtos_task, "usbh", 2048, NULL, 1, NULL);
   xTaskCreate(forward_serial_task, "forward_serial", 2048, NULL, 2, NULL);
   xTaskCreate(forward_hostserial_task, "forward_hostserial", 2048, NULL, 3, NULL);
+  xTaskCreate(ota_handle_task, "ota_handle", 10000, NULL, 1, NULL);
 }
 
 void loop() {
+  
 }
 
 extern "C" {
