@@ -42,7 +42,7 @@
       "use_1200bps_touch": true,
       "wait_for_upload_port": true,
       "require_upload_port": true,
-      "speed": 460800
+      "speed": 921600
     },
     "url": "https://github.com/cumhuronat/mr-1-openpendant",
     "vendor": "Cumhur Onat"

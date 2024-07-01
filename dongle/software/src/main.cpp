@@ -15,55 +15,45 @@
 Adafruit_USBH_Host USBHost(&SPI, 38, 35);
 Adafruit_USBH_CDC SerialHost;
 BLECharacteristic *pCharacteristic;
-SemaphoreHandle_t xSemaphore;
 
 bool mr1Ready = false;
 
 void forward_serial_task(void *param) {
   (void)param;
   while (1) {
-    if (xSemaphoreTake(xSemaphore, portMAX_DELAY) == pdTRUE) {
-      while (Serial.available()) {
-        size_t count = Serial.available();
-        uint8_t bufr[count];
-        count = Serial.read(bufr, count);
-
-        if (mr1Ready && SerialHost && SerialHost.availableForWrite()) {
-          SerialHost.write(bufr, count);
-          SerialHost.flush();
-        }
+    size_t count = Serial.available();
+    if (count > 0) {
+      uint8_t bufr[count];
+      Serial.read(bufr, count);
+      if(mr1Ready && SerialHost && SerialHost.availableForWrite()){
+        SerialHost.write(bufr, count);
+        SerialHost.flush();
       }
-      xSemaphoreGive(xSemaphore);
     }
+
+    count = SerialHost.available();
+    if (count > 0) {
+      uint8_t bufw[count];
+      SerialHost.read(bufw, count);
+      if (Serial.availableForWrite()){
+        Serial.write(bufw, count);
+        Serial.flush();
+      }
+      mr1Ready = true;
+    }
+
     vTaskDelay(1 / portTICK_PERIOD_MS);
   }
 }
 
 
-void forward_hostserial_task(void *param) {
+
+
+void ota_handle_task( void * param ) {
   (void)param;
   while (1) {
-    if (xSemaphoreTake(xSemaphore, portMAX_DELAY) == pdTRUE) {
-      while (SerialHost.connected() && SerialHost.available()) {
-        size_t count = SerialHost.available();
-        uint8_t bufw[count];
-        count = SerialHost.read(bufw, count);
-        if (count > 0 && Serial.availableForWrite()) {
-          Serial.write(bufw, count);
-          Serial.flush();
-          mr1Ready = true;
-        }
-      }
-      xSemaphoreGive(xSemaphore);
-    }
-    vTaskDelay(1 / portTICK_PERIOD_MS);
-  }
-}
-
-void ota_handle_task( void * parameter ) {
-  for (;;) {
     ArduinoOTA.handle();
-    delay(3500);
+    vTaskDelay(3500 / portTICK_PERIOD_MS);
   }
 }
 
@@ -148,17 +138,13 @@ void setup() {
   setBle();
   setOTA();
 
-  xSemaphore = xSemaphoreCreateBinary();
-  xSemaphoreGive(xSemaphore);
-
-  xTaskCreate(usbhost_rtos_task, "usbh", 2048, NULL, 1, NULL);
-  xTaskCreate(forward_serial_task, "forward_serial", 2048, NULL, 2, NULL);
-  xTaskCreate(forward_hostserial_task, "forward_hostserial", 2048, NULL, 3, NULL);
-  xTaskCreate(ota_handle_task, "ota_handle", 10000, NULL, 1, NULL);
+  xTaskCreatePinnedToCore(usbhost_rtos_task, "usbh", 2048, NULL, 3, NULL, 1);
+  xTaskCreatePinnedToCore(forward_serial_task, "forward_serial", 2048, NULL, 2, NULL, 1);
+  xTaskCreatePinnedToCore(ota_handle_task, "ota_handle", 10000, NULL, tskIDLE_PRIORITY, NULL, 1);
 }
 
 void loop() {
-  
+  vTaskDelete(NULL);
 }
 
 extern "C" {
