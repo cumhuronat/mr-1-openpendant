@@ -4,6 +4,7 @@
 #include <BLEUtils.h>
 #include <BLEServer.h>
 #include <Arduino.h>
+// #include "ESPTelnet.h"
 
 #include <WiFi.h>
 #include <ESPmDNS.h>
@@ -15,29 +16,52 @@
 Adafruit_USBH_Host USBHost(&SPI, 38, 35);
 Adafruit_USBH_CDC SerialHost;
 BLECharacteristic *pCharacteristic;
+// ESPTelnet telnet;
 
 bool mr1Ready = false;
 
+void processMessage(const String& message) {
+  String msg = "[MSG:" + message + "]";
+  Serial.println(msg);
+  Serial.flush();
+}
+
 void forward_serial_task(void *param) {
   (void)param;
+  uint8_t buf[64];
+  static String serialHostBuffer;
+
   while (1) {
     size_t count = Serial.available();
     if (count > 0) {
-      uint8_t bufr[count];
-      Serial.read(bufr, count);
-      if(mr1Ready && SerialHost && SerialHost.availableForWrite()){
-        SerialHost.write(bufr, count);
+      if (count > 64) count = 64;
+      size_t bytesRead = Serial.read(buf, count);
+      if (bytesRead > 0 && mr1Ready) {
+        SerialHost.write(buf, bytesRead);
         SerialHost.flush();
       }
     }
 
     count = SerialHost.available();
     if (count > 0) {
-      uint8_t bufw[count];
-      SerialHost.read(bufw, count);
-      if (Serial.availableForWrite()){
-        Serial.write(bufw, count);
+      if (count > 64) count = 64;
+      size_t bytesRead = SerialHost.read(buf, count);
+      if (bytesRead > 0) {
+        Serial.write(buf, bytesRead);
         Serial.flush();
+        for (size_t i = 0; i < bytesRead; ++i) {
+          char c = buf[i];
+          if (c == '\r' || c == '\0') {
+            // Ignore carriage return and null character
+            continue;
+          } else if (c == '\n') {
+            // Process the complete message
+            processMessage(serialHostBuffer);
+            serialHostBuffer = ""; // Clear the buffer
+          } else {
+            serialHostBuffer += c; // Add character to buffer
+          }
+        }
       }
       mr1Ready = true;
     }
@@ -47,8 +71,6 @@ void forward_serial_task(void *param) {
 }
 
 
-
-
 void ota_handle_task( void * param ) {
   (void)param;
   while (1) {
@@ -56,6 +78,13 @@ void ota_handle_task( void * param ) {
     vTaskDelay(3500 / portTICK_PERIOD_MS);
   }
 }
+/*
+void telnet_task( void * param ) {
+  while (1) {
+    telnet.loop();
+    vTaskDelay(1 / portTICK_PERIOD_MS);
+  }
+}*/
 
 void usbhost_rtos_task(void *param) {
   (void)param;
@@ -119,6 +148,7 @@ void setOTA() {
   ArduinoOTA.setHostname("openpendant");
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.setAutoReconnect(true);
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
     Serial.println("Connection Failed! Rebooting...");
     delay(5000);
@@ -126,6 +156,14 @@ void setOTA() {
   }
   ArduinoOTA.begin();
 }
+/*
+int telnetVprintf(const char *fmt, va_list args) {
+  // direct to telnet
+  char buf[256];
+  vsnprintf(buf, sizeof(buf), fmt, args);
+  telnet.print(buf);
+  return strlen(buf);
+}*/
 
 void setup() {
   pinMode(42, OUTPUT);
@@ -136,11 +174,14 @@ void setup() {
   Serial.begin(115200);
   Serial.onEvent(usbEventCallback);
   setBle();
-  setOTA();
+  // setOTA();
+  // telnet.begin(23);
+  // esp_log_set_vprintf(telnetVprintf);
 
   xTaskCreatePinnedToCore(usbhost_rtos_task, "usbh", 2048, NULL, 3, NULL, 1);
   xTaskCreatePinnedToCore(forward_serial_task, "forward_serial", 2048, NULL, 2, NULL, 1);
-  xTaskCreatePinnedToCore(ota_handle_task, "ota_handle", 10000, NULL, tskIDLE_PRIORITY, NULL, 1);
+  // xTaskCreatePinnedToCore(ota_handle_task, "ota_handle", 10000, NULL, tskIDLE_PRIORITY, NULL, 1);
+  // xTaskCreatePinnedToCore(telnet_task, "telnet", 10000, NULL, tskIDLE_PRIORITY, NULL, 1);
 }
 
 void loop() {
