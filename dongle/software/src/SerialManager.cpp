@@ -1,10 +1,11 @@
 #include "SerialManager.h"
+#include "GRBLParser.h"
 
 bool SerialManager::mr1Ready = false;
 
 void SerialManager::begin()
 {
-    xTaskCreatePinnedToCore(forwardSerialTask, "forward_serial", 2048, NULL, 2, NULL, 1);
+    xTaskCreatePinnedToCore(forwardSerialTask, "forward_serial", 4096, NULL, 2, NULL, 1);
     Serial.begin(SERIAL_BAUD_RATE);
     Serial.enableReboot(false);
     Serial.onEvent(usbEventCallback);
@@ -49,7 +50,7 @@ void SerialManager::forwardSerialTask(void *param)
                     }
                     else if (c == '\n')
                     {
-                        processMessage(serialHostBuffer);
+                        GRBLParser::processMessage(serialHostBuffer);
                         serialHostBuffer = "";
                     }
                     else
@@ -65,10 +66,8 @@ void SerialManager::forwardSerialTask(void *param)
     }
 }
 
-void SerialManager::processMessage(const String &message)
-{
-    // TODO: Implement message processing
-}
+
+
 
 void SerialManager::usbEventCallback(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {

@@ -10,21 +10,22 @@ class BLEManager
 {
 public:
     void begin();
+    void updateMachineState(char status[10]);
 
 private:
-    BLEServer *pServer;
-    BLEService *pService;
-    BLECharacteristic *pCharacteristic;
+    BLEServer *server;
+    BLEService *service;
+    BLECharacteristic *machineState;
+    BLECharacteristic *workPosition;
+    BLECharacteristic *feedAndSpeed;
+    BLECharacteristic *pinState;
+    BLECharacteristic *workCoordOffsets;
+    BLECharacteristic *overrides;
 
-    class MyServerCallbacks : public BLEServerCallbacks
+    class BLEServerEventHandler : public BLEServerCallbacks
     {
         void onConnect(BLEServer *pServer) override;
         void onDisconnect(BLEServer *pServer) override;
-    };
-
-    class MyCharacteristicCallbacks : public BLECharacteristicCallbacks
-    {
-        void onWrite(BLECharacteristic *pCharacteristic) override;
     };
 };
 

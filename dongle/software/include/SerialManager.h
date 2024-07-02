@@ -11,7 +11,6 @@ public:
     static void forwardSerialTask(void *param);
 
 private:
-    static void processMessage(const String &message);
     static void usbEventCallback(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data);
 
     static bool mr1Ready;

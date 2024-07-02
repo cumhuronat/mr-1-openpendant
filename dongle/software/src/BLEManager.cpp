@@ -5,38 +5,36 @@ void BLEManager::begin()
 {
     BLEDevice::init(BLE_DEVICE_NAME);
 
-    pServer = BLEDevice::createServer();
-    pServer->setCallbacks(new MyServerCallbacks());
-    pService = pServer->createService(SERVICE_UUID);
-    pCharacteristic = pService->createCharacteristic(
-        CHARACTERISTIC_UUID,
-        BLECharacteristic::PROPERTY_WRITE);
+    server = BLEDevice::createServer();
+    server->setCallbacks(new BLEServerEventHandler());
+    service = server->createService(SERVICE_UUID);
+    machineState = service->createCharacteristic(CHARACTERISTIC_MACHINE_STATE_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+    workPosition = service->createCharacteristic(CHARACTERISTIC_WORK_POSITION_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+    feedAndSpeed = service->createCharacteristic(CHARACTERISTIC_FEED_AND_SPEED_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+    pinState = service->createCharacteristic(CHARACTERISTIC_PIN_STATE_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+    workCoordOffsets = service->createCharacteristic(CHARACTERISTIC_WORK_COORD_OFFSETS_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+    overrides = service->createCharacteristic(CHARACTERISTIC_OVERRIDE_UUID, BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
 
-    pCharacteristic->setCallbacks(new MyCharacteristicCallbacks());
-
-    pService->start();
-    BLEAdvertising *pAdvertising = pServer->getAdvertising();
+    service->start();
+    BLEAdvertising *pAdvertising = server->getAdvertising();
     pAdvertising->addServiceUUID(SERVICE_UUID);
     pAdvertising->setScanResponse(false);
+    pAdvertising->setMinPreferred(0x06);
     pAdvertising->start();
 }
 
-void BLEManager::MyServerCallbacks::onConnect(BLEServer *pServer)
+void BLEManager::BLEServerEventHandler::onConnect(BLEServer *pServer)
 {
     pServer->startAdvertising();
 }
 
-void BLEManager::MyServerCallbacks::onDisconnect(BLEServer *pServer)
+void BLEManager::BLEServerEventHandler::onDisconnect(BLEServer *pServer)
 {
     pServer->startAdvertising();
 }
 
-void BLEManager::MyCharacteristicCallbacks::onWrite(BLECharacteristic *pCharacteristic)
+void BLEManager::updateMachineState(char status[10])
 {
-    String value = pCharacteristic->getValue().c_str();
-    if (value.length() > 0)
-    {
-        USBManager::getSerialHost().println(value);
-        pCharacteristic->setValue("");
-    }
+    bleManager.machineState->setValue(status);
+    bleManager.machineState->notify();
 }
