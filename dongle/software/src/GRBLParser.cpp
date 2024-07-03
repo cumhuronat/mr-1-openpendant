@@ -47,42 +47,110 @@ void GRBLParser::parseStatus(String &statusString)
         else if (segment.startsWith("WPos:"))
         {
             String wpos = segment.substring(5);
-            currentStatus.wposX = getValue(wpos, ',', 0).toFloat();
-            currentStatus.wposY = getValue(wpos, ',', 1).toFloat();
-            currentStatus.wposZ = getValue(wpos, ',', 2).toFloat();
+            float wposX = getValue(wpos, ',', 0).toFloat();
+            float wposY = getValue(wpos, ',', 1).toFloat();
+            float wposZ = getValue(wpos, ',', 2).toFloat();
+            if(wposX != currentStatus.wposX){
+                bleManager.updateWorkPositionX(wposX);
+                currentStatus.wposX = wposX;
+            }
+            if(wposY != currentStatus.wposY){
+                bleManager.updateWorkPositionY(wposY);
+                currentStatus.wposY = wposY;
+            }
+            if(wposZ != currentStatus.wposZ){
+                bleManager.updateWorkPositionZ(wposZ);
+                currentStatus.wposZ = wposZ;
+            }
         }
         else if (segment.startsWith("FS:"))
         {
             String fs = segment.substring(3);
-            currentStatus.feedRate = getValue(fs, ',', 0).toFloat();
-            currentStatus.spindleSpeed = getValue(fs, ',', 1).toFloat();
+            float feedRate = getValue(fs, ',', 0).toFloat();
+            float spindleSpeed = getValue(fs, ',', 1).toFloat();
+            if(feedRate != currentStatus.feedRate){
+                bleManager.updateFeed(feedRate);
+                currentStatus.feedRate = feedRate;
+            }
+            if(spindleSpeed != currentStatus.spindleSpeed){
+                bleManager.updateSpeed(spindleSpeed);
+                currentStatus.spindleSpeed = spindleSpeed;
+            }
         }
         else if (segment.startsWith("Pn:"))
         {
             String pinState = segment.substring(3);
-            currentStatus.pinX = pinState.indexOf('X') != -1;
-            currentStatus.pinY1 = pinState.indexOf("Y1") != -1;
-            currentStatus.pinY2 = pinState.indexOf("Y2") != -1;
-            currentStatus.pinZ = pinState.indexOf('Z') != -1;
-            currentStatus.pinH = pinState.indexOf('H') != -1;
+            bool pinX = pinState.indexOf('X') != -1;
+            bool pinY1 = pinState.indexOf("Y1") != -1;
+            bool pinY2 = pinState.indexOf("Y2") != -1;
+            bool pinZ = pinState.indexOf('Z') != -1;
+            bool pinH = pinState.indexOf('H') != -1;
+            if(pinX != currentStatus.pinX){
+                bleManager.updatePinStateX(pinX);
+                currentStatus.pinX = pinX;
+            }
+            if(pinY1 != currentStatus.pinY1){
+                bleManager.updatePinStateY1(pinY1);
+                currentStatus.pinY1 = pinY1;
+            }
+            if(pinY2 != currentStatus.pinY2){
+                bleManager.updatePinStateY2(pinY2);
+                currentStatus.pinY2 = pinY2;
+            }
+            if(pinZ != currentStatus.pinZ){
+                bleManager.updatePinStateZ(pinZ);
+                currentStatus.pinZ = pinZ;
+            }
+            if(pinH != currentStatus.pinH){
+                bleManager.updatePinStateH(pinH);
+                currentStatus.pinH = pinH;
+            }
         }
         else if (segment.startsWith("Q:"))
         {
-            currentStatus.queueItems = segment.substring(2).toInt();
+            int queueItems = segment.substring(2).toInt();
+            if(queueItems != currentStatus.queueItems){
+                bleManager.updateQueueItems(queueItems);
+                currentStatus.queueItems = queueItems;
+            }
         }
         else if (segment.startsWith("WCO:"))
         {
             String wco = segment.substring(4);
-            currentStatus.wcoX = getValue(wco, ',', 0).toFloat();
-            currentStatus.wcoY = getValue(wco, ',', 1).toFloat();
-            currentStatus.wcoZ = getValue(wco, ',', 2).toFloat();
+            float wcoX = getValue(wco, ',', 0).toFloat();
+            float wcoY = getValue(wco, ',', 1).toFloat();
+            float wcoZ = getValue(wco, ',', 2).toFloat();
+            if(wcoX != currentStatus.wcoX){
+                bleManager.updateWorkCoordOffsetX(wcoX);
+                currentStatus.wcoX = wcoX;
+            }
+            if(wcoY != currentStatus.wcoY){
+                bleManager.updateWorkCoordOffsetY(wcoY);
+                currentStatus.wcoY = wcoY;
+            }
+            if(wcoZ != currentStatus.wcoZ){
+                bleManager.updateWorkCoordOffsetZ(wcoZ);
+                currentStatus.wcoZ = wcoZ;
+            }
         }
         else if (segment.startsWith("Ov:"))
         {
             String ov = segment.substring(3);
-            currentStatus.ovFeed = getValue(ov, ',', 0).toInt();
-            currentStatus.ovRapid = getValue(ov, ',', 1).toInt();
-            currentStatus.ovSpindle = getValue(ov, ',', 2).toInt();
+            int ovFeed = getValue(ov, ',', 0).toInt();
+            int ovRapid = getValue(ov, ',', 1).toInt();
+            int ovSpindle = getValue(ov, ',', 2).toInt();
+            if(ovFeed != currentStatus.ovFeed){
+                bleManager.updateOverrideFeed(ovFeed);
+                currentStatus.ovFeed = ovFeed;
+            }
+            if(ovRapid != currentStatus.ovRapid){
+                bleManager.updateOverrideRapid(ovRapid);
+                currentStatus.ovRapid = ovRapid;
+            }
+            if(ovSpindle != currentStatus.ovSpindle){
+                bleManager.updateOverrideSpindle(ovSpindle);
+                currentStatus.ovSpindle = ovSpindle;
+            }
         }
     }
 }
