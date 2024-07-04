@@ -1,0 +1,190 @@
+(footprint "SOT-23-3_L2.9-W1.3-P1.83-LS2.4-BR"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "U5"
+		(at 3.19 0.08 180)
+		(layer "F.SilkS")
+		(uuid "c13a6114-3210-4e3b-85bb-bedb7a764f58")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "APX803S-26SA-7"
+		(at 0 4.91 180)
+		(layer "F.Fab")
+		(uuid "fe9db1bf-a094-4818-9c82-b1b9a943eda1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "pendant:SOT-23-3_L2.9-W1.3-P1.83-LS2.4-BR"
+		(at 0 0 180)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3050b0e9-b22d-454d-9291-aabce0722273")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://lcsc.com/product-detail/Microprocessor-Microcontroller-Supervisors_Diodes-Incorporated-APX803S-26SA-7_C526393.html"
+		(at 0 0 180)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a3fd3784-c388-45c9-9351-12a196e7598d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 180)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b5145f88-0fe4-420c-9846-684a52a7e3c9")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C526393"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f9e6ce3f-a478-47bd-91ab-047f6903b901")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -0.73 -1.53)
+		(end -0.73 -0.48)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "fd402857-b131-4eb4-a72b-363a7e02b24a")
+	)
+	(fp_line
+		(start -0.73 1.53)
+		(end -0.73 0.48)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "dc5068ab-56d2-4638-be76-de23f9e9ec6f")
+	)
+	(fp_line
+		(start 0.73 -1.53)
+		(end -0.73 -1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "2f2883ac-e185-4847-8702-8f3e6cb4491e")
+	)
+	(fp_line
+		(start 0.73 -0.43)
+		(end 0.73 0.43)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "64577393-e7b8-449a-97f2-f34286c929d6")
+	)
+	(fp_line
+		(start 0.73 1.53)
+		(end -0.73 1.53)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "364c35d6-f2ff-4c8d-bad0-8b077d0ba1e7")
+	)
+	(fp_circle
+		(center 1.5 0.91)
+		(end 1.6 0.91)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill none)
+		(layer "Cmts.User")
+		(uuid "468b0bc9-099a-4b9f-82ad-31595759d84f")
+	)
+	(fp_circle
+		(center 1.2 1.45)
+		(end 1.23 1.45)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "98e8b808-9ffa-4c89-b979-220265d5e65f")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 180)
+		(layer "F.Fab")
+		(uuid "3ba154c0-f93f-4b7f-8e91-be5e242019a1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at 1.15 0.91 90)
+		(size 0.7 1.1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "ac8008ac-9c06-43e6-97b6-ec581d605168")
+	)
+	(pad "2" smd rect
+		(at 1.15 -0.91 90)
+		(size 0.7 1.1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "8a377064-355e-4f30-94ce-6f59fb23f810")
+	)
+	(pad "3" smd rect
+		(at -1.15 0 90)
+		(size 0.7 1.1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "1ffee800-6062-45f4-b24c-97f803092420")
+	)
+	(model "${KIPRJMOD}/library.3dshapes/SOT-23-3_L2.9-W1.3-P1.83-LS2.4-BR.wrl"
+		(offset
+			(xyz 0 -0 0.4)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 -90)
+		)
+	)
+)

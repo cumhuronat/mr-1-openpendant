@@ -1,0 +1,173 @@
+(footprint "SOD-123FL_L2.7-W1.8-LS3.8-RD"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "D1"
+		(at 3.531191 0 90)
+		(layer "F.SilkS")
+		(uuid "8896ceb8-72bb-4468-9a75-ba74418e2db5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MBR0540"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "7e3fb8e0-8704-4d24-b4ba-52f3494416dd")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "pendant:SOD-123FL_L2.7-W1.8-LS3.8-RD"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f94dd17d-0c26-4823-8ce3-1b8b6ae86f9e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_MBR0540_C116159.html"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3810eaa7-68b7-4bc7-8d0b-304994445864")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "71f2580a-bdea-47b3-8e3b-9f54fd9ba331")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C116159"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4edeee6a-ac75-4d37-981e-e63b16c58ee0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -1.38 -0.93)
+		(end 1.38 -0.93)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "841324e6-6546-473b-afff-92976a0f366e")
+	)
+	(fp_line
+		(start -1.38 0.93)
+		(end 1.38 0.93)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c57b6023-fd80-4495-b0ba-42542341229d")
+	)
+	(fp_line
+		(start -0.92 -0.88)
+		(end -0.92 0.88)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c841594b-5c40-4bff-9fba-ef66bf5441a2")
+	)
+	(fp_line
+		(start 1.38 -0.93)
+		(end 1.38 -0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "38a3282e-ad12-46f5-adc0-4bc4d1c58125")
+	)
+	(fp_line
+		(start 1.38 0.93)
+		(end 1.38 0.73)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "787f1edb-3b84-4498-9d35-d38a8c501980")
+	)
+	(fp_circle
+		(center -1.95 0.9)
+		(end -1.92 0.9)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "d32d653c-41dc-49d6-81e6-c928696110a6")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "f8b6b63b-b927-47ab-b2b3-4ba9d84c6fb8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.73 0)
+		(size 1.4 1.2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "983555e1-5171-440b-84bc-cb43cdd63db7")
+	)
+	(pad "2" smd rect
+		(at 1.73 0)
+		(size 1.4 1.2)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d875142d-2745-48c7-9bb0-0e65bf5bd283")
+	)
+	(model "${KIPRJMOD}/library.3dshapes/SOD-123FL_L2.8-W1.8-H1.1-LS3.6.wrl"
+		(offset
+			(xyz 0.1 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 180)
+		)
+	)
+)
