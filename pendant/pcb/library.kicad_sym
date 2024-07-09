@@ -2242,7 +2242,7 @@
 				)
 			)
 		)
-		(property "Footprint" "pendant:R0603"
+		(property "Footprint" "pendant:R0402"
 			(at 0 -7.62 0)
 			(effects
 				(font
@@ -2251,7 +2251,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://lcsc.com/product-detail/Others_ResistorToday-ETCR0603F8K20K9_C365454.html"
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_BOURNS-CR0402-J--9R1GLF_C203098.pdf"
 			(at 0 -10.16 0)
 			(effects
 				(font
@@ -2269,7 +2269,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC Part" "C365454"
+		(property "LCSC Part" "C203098"
 			(at 0 -12.7 0)
 			(effects
 				(font

@@ -30,5 +30,5 @@ fp-info-cache
 
 # PCM build files
 production
-dongle-backups
+pendant-backups
 espressif-kicad-addon.zip
