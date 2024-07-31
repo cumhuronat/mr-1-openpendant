@@ -1,25 +1,161 @@
-(module easyeda2kicad:SW-SMD_L3.9-W3.0-P4.45 (layer F.Cu) (tedit 5DC5F6A4)
+(footprint "SW-SMD_L3.9-W3.0-P4.45"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -4 0)
+		(layer "F.SilkS")
+		(uuid "536591f3-e925-480b-b0ae-6c9006edcbf5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SW-SMD_L3.9-W3.0-P4.45"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "2ea67be0-1f78-4309-a0ce-e1d60a64b297")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7bcd59dd-10da-4af6-aaac-595baaea7fbf")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "957fb5ef-9374-469d-9f6c-4de5c5e214db")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0227500b-40b9-441f-8fb7-6b6c83f73b4a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
 	(attr smd)
-	(fp_text reference REF** (at 0 -4.0) (layer F.SilkS)
-		(effects (font (size 1 1) (thickness 0.15)))
+	(fp_line
+		(start -2.03 -1.54)
+		(end -2.03 -0.88)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3b596be2-b670-4774-9ddb-03d1f1dff872")
 	)
-	(fp_text value SW-SMD_L3.9-W3.0-P4.45 (at 0 4.0) (layer F.Fab)
-		(effects (font (size 1 1) (thickness 0.15)))
+	(fp_line
+		(start -2.03 1.54)
+		(end -2.03 0.88)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "74f57fed-3bf0-4901-aeda-879ac4a0d8d2")
 	)
-	(fp_text user %R (at 0 0) (layer F.Fab)
-		(effects (font (size 1 1) (thickness 0.15)))
+	(fp_line
+		(start 2.03 -1.54)
+		(end -2.03 -1.54)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "15af97ce-7fbb-4e43-a942-28ff313de17c")
 	)
-	(fp_line (start 2.03 1.54) (end -2.03 1.54) (layer F.SilkS) (width 0.15))
-	(fp_line (start -2.03 1.54) (end -2.03 0.88) (layer F.SilkS) (width 0.15))
-	(fp_line (start 2.03 -1.54) (end -2.03 -1.54) (layer F.SilkS) (width 0.15))
-	(fp_line (start -2.03 -1.54) (end -2.03 -0.88) (layer F.SilkS) (width 0.15))
-	(pad 1 smd rect (at -2.18 0.00 0.00) (size 1.23 1.36) (layers F.Cu F.Paste F.Mask))
-	(pad 2 smd rect (at 2.18 0.00 0.00) (size 1.23 1.36) (layers F.Cu F.Paste F.Mask))
-	(fp_circle (center 2.50 -1.47) (end 2.53 -1.47) (layer F.Fab) (width 0.06))
-	(fp_circle (center -0.00 -0.00) (end 0.90 -0.00) (layer F.SilkS) (width 0.25))
-	(model "${KIPRJMOD}C:/Projects/cnc-pendant/dongle.3dshapes/SW-SMD_L3.9-W2.9-H2.0-LS4.8.wrl"
-		(offset (xyz 0.000 -0.000 -0.000))
-		(scale (xyz 1 1 1))
-		(rotate (xyz 0 0 0))
+	(fp_line
+		(start 2.03 1.54)
+		(end -2.03 1.54)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6cced1d3-a0d2-42a0-8dbd-0efa5f66b854")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.9 0)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "ceaba739-a353-4ee3-a62e-9d4ec35927e1")
+	)
+	(fp_circle
+		(center 2.5 -1.47)
+		(end 2.53 -1.47)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "952ae4d2-cf40-4cbb-a8fc-b8c863397967")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "720dd5c9-6fac-4ac2-967f-b3f88d04bb4b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -2.18 0)
+		(size 1.23 1.36)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "8593bbf9-2130-40a4-bf02-9321fc731e5f")
+	)
+	(pad "2" smd rect
+		(at 2.18 0)
+		(size 1.23 1.36)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "1ea56dfd-c290-49bb-8bf4-06393912dfb1")
+	)
+	(model "${KIPRJMOD}/library.3dshapes/SW-SMD_L3.9-W2.9-H2.0-LS4.8.wrl"
+		(offset
+			(xyz 0 -0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
 	)
 )

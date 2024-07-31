@@ -58,7 +58,12 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "starved_thermal|122400000|69800000|a49d9344-10a1-4bef-b2c0-3742aefa238b|d1db0f09-d3ee-41a3-8acc-e13ab457a147|F.Cu",
+        "starved_thermal|132400000|56950000|a49d9344-10a1-4bef-b2c0-3742aefa238b|45d5e3c8-a4a1-45c5-aa40-e772694d617e|F.Cu",
+        "starved_thermal|133950000|69300000|a49d9344-10a1-4bef-b2c0-3742aefa238b|4ff6f9a9-429f-4729-bd4f-3ce1f31e4ddf|F.Cu",
+        "starved_thermal|147950000|55300000|a49d9344-10a1-4bef-b2c0-3742aefa238b|6ece9598-4bf1-47e8-973e-ed267fb2b1d7|F.Cu"
+      ],
       "meta": {
         "version": 2
       },

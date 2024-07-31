@@ -1,0 +1,136 @@
+(footprint "HDR-TH_3P-P2.54-V-M-1"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "U2"
+		(at 0 -3 0)
+		(layer "F.SilkS")
+		(uuid "62e6cb5a-f551-4d8b-97d0-7019dde1994c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "2.54-1*4"
+		(at 1.27 4 0)
+		(layer "F.Fab")
+		(uuid "3144ef64-3fde-465e-894e-acaabefcd20e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "dongle:HDR-TH_4P-P2.54-V-M-1"
+		(at 1.27 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9369adec-db3a-4b8b-8de6-d346bf8db172")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 1.27 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6c4afcd8-1720-4d3a-a69e-20776abdcf2d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 1.27 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "88254dab-178e-4333-ad70-91fabfe9abd5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC Part" "C5116483"
+		(at 1.27 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6076ccd3-9eee-486e-9971-605a8f1f1037")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -3.81 1.27)
+		(end -3.78 1.27)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "86d982d7-24f7-4b5e-91ee-781072799039")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 1.27 0 0)
+		(layer "F.Fab")
+		(uuid "30381330-7681-4072-81f1-f80350997f45")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -2.54 0)
+		(size 1.7 1.7)
+		(drill 1.100023)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(zone_connect 2)
+		(uuid "b1664145-a247-4858-9e8f-46fecb44de38")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0)
+		(size 1.7 1.7)
+		(drill 1.100023)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "4830a499-a186-4d35-9a57-11798d8228f1")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 0)
+		(size 1.7 1.7)
+		(drill 1.100023)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0468c7a6-8c0e-418a-b51a-eb06c6a3668e")
+	)
+	(model "${KIPRJMOD}/library.3dshapes/HDR-M-2.54_1x4.wrl"
+		(offset
+			(xyz 3.8 -0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
