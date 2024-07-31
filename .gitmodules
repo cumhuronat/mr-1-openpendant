@@ -1,0 +1,3 @@
+[submodule "dongle/software"]
+	path = dongle/software
+	url = https://github.com/cumhuronat/dongle-software
