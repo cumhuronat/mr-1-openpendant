@@ -1,3 +1,6 @@
 [submodule "dongle/software"]
 	path = dongle/software
 	url = https://github.com/cumhuronat/dongle-software
+[submodule "pendant/software"]
+	path = pendant/software
+	url = https://github.com/cumhuronat/pendant-software
