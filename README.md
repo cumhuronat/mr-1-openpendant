@@ -11,6 +11,9 @@ The system consists of two main components and detailed documentation for them c
 - Built using ESP32-based hardware
 - Includes software implementation for the user interface and control logic
 
+![Pendant Render](images/pendant-render.png)
+![Pendant PCB](images/pendant-pcb.png)
+
 ### Dongle
 - USB interface for CNC machine communication
 - Components:
@@ -18,6 +21,9 @@ The system consists of two main components and detailed documentation for them c
   - 3D-printable enclosure
   - Arduino-based firmware using TinyUSB
   - Interface software
+
+![Dongle PCB](images/dongle-pcb.png)
+![Dongle Schematics](images/dongle-schematics.png)
 
 ## Project Structure
 - `/pendant` - Main pendant implementation
